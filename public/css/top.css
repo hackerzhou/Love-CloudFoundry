@@ -1,0 +1,29 @@
+#topResult td{
+text-align: center;
+}
+
+#topResult td, #topResult th{
+border: 1px #eee solid;
+}
+
+#topResult{
+width: 320px;
+border-collapse:collapse;
+}
+
+#content{
+width: 350px;
+margin-top: 30px;
+}
+
+tr.tableHeader{
+background-color: #999;
+}
+
+tr.odd{
+background-color: #fff;
+}
+
+tr.even{
+background-color: #eee;
+}

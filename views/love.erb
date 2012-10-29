@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title><%= display_name%></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <style type="text/css">
+    @font-face {
+      font-family: digit;
+      src: url('/digital-7_mono.ttf') format("truetype");
+    }
+  </style>
+  <link href="/css/common.css" type="text/css" rel="stylesheet">
+  <link href="/css/love.css" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="/js/jquery-1.8.0.min.js"></script>
+  <script type="text/javascript" src="/js/garden.js"></script>
+  <script type="text/javascript" src="/js/love-functions.js"></script>
+  <script type="text/javascript" src="/js/common.js"></script>
+  <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35732495-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+  </script>
+</head>
+
+<body>
+  <div id="mainDiv">
+    <div id="content">
+      <pre id="code"><%= your_words%></pre>
+      <div id="loveHeart">
+        <canvas id="garden"></canvas>
+        <div id="words">
+          <div id="messages"><%= lover_name %>, I have fallen in love with you for
+            <div id="elapseClock"></div>
+          </div>
+          <div id="loveu">Love u forever and ever.<br/>
+            <div class="signature">- <%= your_name %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="links">
+      <div id="create_link">CREATE YOURS</div>
+      <div id="top_pages">TOP PAGES</div>
+    </div>
+    <div id="copyright" style="height: 45px;">
+      Inspired by <a href="http://www.openrise.com/lab/FlowerPower/">FlowerPower</a> project.<br />
+      Copyright © <%= Time.now.year %> <a href='http://hackerzhou.me'>hackerzhou.me</a> 2009-<%= Time.now.year %><br/>
+      Page created at <%= created_at%> and visited <%= view_count%> times.
+    </div>
+  </div>
+  <script type="text/javascript">
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+    var together = parseTime("<%= start_time%>");
+    var typewriterSpeed = <%= typewriter_speed%>;
+    var animationInterval = <%= interval%>;
+    var heartAnimationSpeed = <%= loveheart_speed%>;
+    var wordsInterval = <%= words_interval%>;
+    var signatureInterval = <%= signature_interval%>;
+    
+    if (!document.createElement('canvas').getContext) {
+      var msg = document.createElement("div");
+      msg.id = "errorMsg";
+      msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
+      document.body.appendChild(msg);
+      $("#code").css("display", "none");
+      document.execCommand("stop");
+    } else {
+      setTimeout(function () {
+        startHeartAnimation();
+        $("#links").fadeIn(1000);
+      }, animationInterval);
+      
+      timeElapse(together);
+      setInterval(function () {
+        timeElapse(together);
+      }, 500);
+      adjustCodePosition();
+      $("#code").typewriter();
+    }
+  </script>
+</body>
+</html>

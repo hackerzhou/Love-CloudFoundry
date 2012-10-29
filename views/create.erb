@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Create Your Own Page</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href="css/common.css" type="text/css" rel="stylesheet"/>
+    <link href="css/create.css" type="text/css" rel="stylesheet"/>
+    <link href="css/smoothness/jquery-ui-1.8.24.custom.css" type="text/css" rel="stylesheet"/>
+    <link href="css/jquery-ui-timepicker-addon.css" type="text/css" rel="stylesheet"/>
+    <link href="css/colorbox.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.24.custom.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="js/jquery.colorbox-min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript" src="js/create.js"></script>
+    <script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35732495-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+    </script>
+  </head>
+  <body>
+    <div id="mainDiv">
+      <div id="content">
+        <div id="create_form_wrapper">
+          <form id="create_form" method="post" action="create" onsubmit="return checkForm();">
+            <div class="form_header">Create your own page</div>
+            <div class="line_wrapper has_second_line">
+              <div class="info">Page URL suffix:</div>
+              <div class="input_wrapper">
+                <input class="txt" type="text" id="url_suffix" name="url_suffix" maxlength="32" onkeyup="checkUrlSuffix(this, '#page_url');" onblur="checkUrlSuffixAvailable(this, '#page_url');" /> 
+                <div class="error" id="url_suffix_err"></div>
+              </div>
+              <div id="page_url"></div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Page name:</div>
+              <div class="input_wrapper">
+                <input class="txt" type="text" id="page_name" name="page_name" maxlength="32" onkeyup="checkPageName(this);" onblur="checkPageName(this);" /> 
+                <div class="error" id="page_name_err">
+                </div>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Your name:</div>
+              <div class="input_wrapper">
+                <input class="txt" type="text" id="your_name" name="your_name" maxlength="32" onkeyup="checkYourName(this);" onblur="checkYourName(this);" /> 
+                <div class="error" id="your_name_err"></div>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Your lover's name:</div>
+              <div class="input_wrapper">
+                <input class="txt" type="text" id="lover_name" name="lover_name" maxlength="32" onkeyup="checkLoverName(this);" onblur="checkLoverName(this);" /> 
+                <div class="error" id="lover_name_err"></div>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Relation start time:</div>
+              <div class="input_wrapper">
+                <input class="txt" type="text" id="start_time" name="start_time" readonly="readonly" onchange="$('#start_time_err').html('')" onmouseclick="checkStartTime(this);"/>
+                <div class="error" id="start_time_err"></div>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Typewriter speed:</div>
+              <div class="input_wrapper">
+                <div id="typewriter_slider" class="slider_bar"></div>
+                <div id="typewriter_display" class="slider_text">Medium</div>
+                <input id="typewriter_speed" name="typewriter_speed" type="hidden" value="75"/>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Love heart speed:</div>
+              <div class="input_wrapper">
+                <div id="loveheart_slider" class="slider_bar"></div>
+                <div id="loveheart_display" class="slider_text">Medium</div>
+                <input id="loveheart_speed" name="loveheart_speed" type="hidden" value="50"/>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Animation interval:</div>
+              <div class="input_wrapper">
+                <div id="interval_slider" class="slider_bar"></div>
+                <div id="interval_display" class="slider_text">5 second(s)</div>
+                <input id="interval" name="interval" type="hidden" value="5000"/>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Words interval:</div>
+              <div class="input_wrapper">
+                <div id="words_interval_slider" class="slider_bar"></div>
+                <div id="words_interval_display" class="slider_text">5 second(s)</div>
+                <input id="words_interval" name="words_interval" type="hidden" value="5000"/>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Signature interval:</div>
+              <div class="input_wrapper">
+                <div id="signature_interval_slider" class="slider_bar"></div>
+                <div id="signature_interval_display" class="slider_text">3 second(s)</div>
+                <input id="signature_interval" name="signature_interval" type="hidden" value="3000"/>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Delete password:</div>
+              <div class="input_wrapper">
+                <input class="txt" type="password" id="delete_key" name="delete_key" maxlength="16" onkeyup="checkDeleteKey(this);" onblur="checkDeleteKey(this);" /> 
+                <div class="error" id="delete_key_err"></div>
+              </div>
+            </div>
+            <div class="line_wrapper">
+              <div class="info">Your words:</div>
+              <div class="input_wrapper">
+                <textarea id="your_words" name="your_words" onkeyup="checkYourWords(this);" onblur="checkYourWords(this);"></textarea>
+                <div class="error" id="your_words_err"></div>
+              </div>
+            </div>
+            <div class="line_wrapper" id="form_buttons_div">
+              <input type="button" value="Preview" onclick="previewPage();" class="preview"/><input type="submit" value="Submit"/>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="copyright">
+        Inspired by <a href="http://www.openrise.com/lab/FlowerPower/">FlowerPower</a> project.<br />
+         Copyright © <%= Time.now.year %> <a href='http://hackerzhou.me'>hackerzhou.me</a> 2009-<%= Time.now.year %>
+      </div>
+    </div>
+  </body>
+</html>
