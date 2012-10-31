@@ -51,7 +51,7 @@ HTML_STRING
       :start_time => "2010-11-02 20:00:00",
       :lover_name => "MaryNee",
       :your_name => "hackerzhou",
-      :page_key => "",
+      :page_key => "#DEFAULT_PAGE_PASSWORD#",
       :message => html_string
 
     create_table :admins, :force => true do |t|
